@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - M. Dafa Fawwaz Arkan</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgMain: '#0B0D10',
+                        bgSec: '#12161C',
+                        textMain: '#F5F7FA',
+                        textSec: '#9CA3AF',
+                        accent: '#3B82F6',
+                        accentHover: '#60A5FA',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #0B0D10;
+            color: #F5F7FA;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #12161C;
+            border-radius: 4px;
+            border: 1px solid #3B82F6;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3B82F6;
+        }
+
+        /* Glowing effects */
+        .glow-accent {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+        }
+        .glow-accent-lg {
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.25);
+        }
+        .text-glow {
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Ambient Background Radial Canvas */
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            background-image: 
+                radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+
+        /* Card Hover Animations */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            border-color: #3B82F6;
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Custom Progress Bar Animation */
+        .progress-line {
+            transition: width 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+    </style>
+</head>
+<body class="bg-bgMain text-textMain relative bg-grid-pattern antialiased">
+
+    <!-- Sticky Glassmorphism Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#0B0D10]/80 backdrop-blur-md border-b border-gray-800/60 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-accent/10 border border-accent/40 flex items-center justify-center text-accent font-bold text-xl group-hover:scale-105 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                    D
+                </div>
+                <span class="font-extrabold text-lg tracking-tight text-textMain group-hover:text-accent transition-colors">
+                    Fwz<span class="text-accent">.dev</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-textSec hover:text-accent text-sm font-medium transition-colors">Beranda</a>
+                <a href="#about" class="text-textSec hover:text-accent text-sm font-medium transition-colors">Tentang Saya</a>
+                <a href="#skills" class="text-textSec hover:text-accent text-sm font-medium transition-colors">Skill</a>
+                <a href="#education" class="text-textSec hover:text-accent text-sm font-medium transition-colors">Pendidikan</a>
+                <a href="#contact" class="px-4 py-2 rounded-xl bg-accent hover:bg-accentHover text-white text-sm font-semibold transition-all shadow-md shadow-accent/20 hover:shadow-accent/40">
+                    Hubungi Saya
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-textSec hover:text-textMain p-2 focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-2xl" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-bgSec/95 border-b border-gray-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-lg text-textSec hover:bg-accent/10 hover:text-accent transition-all">Beranda</a>
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-textSec hover:bg-accent/10 hover:text-accent transition-all">Tentang Saya</a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-lg text-textSec hover:bg-accent/10 hover:text-accent transition-all">Skill</a>
+            <a href="#education" class="mobile-link block px-3 py-2 rounded-lg text-textSec hover:bg-accent/10 hover:text-accent transition-all">Pendidikan</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg bg-accent text-white text-center font-semibold mt-2">Hubungi Saya</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen pt-32 pb-16 flex items-center justify-center relative overflow-hidden">
+        <!-- Glowing Ambient Lights -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Text Left -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                        Pelajar & Tech Enthusiast
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-textMain">
+                        Halo, Saya <br class="hidden sm:inline"/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-blue-400 to-accentHover text-glow">
+                            M. Dafa Fawwaz Arkan
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-textSec max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Mengembangkan potensi di dunia teknologi, pemrograman web, serta eksplorasi kecerdasan buatan untuk menciptakan karya yang inovatif dan bermanfaat.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="https://wa.me/628125982941" target="_blank" rel="noopener noreferrer" 
+                           class="px-6 py-3.5 rounded-xl bg-accent hover:bg-accentHover text-white font-semibold text-sm flex items-center gap-2 transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-0.5">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Hubungi via WA</span>
+                        </a>
+                        <a href="#skills" 
+                           class="px-6 py-3.5 rounded-xl bg-bgSec hover:bg-gray-800/80 text-textMain border border-gray-700/80 hover:border-accent/50 font-semibold text-sm flex items-center gap-2 transition-all hover:-translate-y-0.5">
+                            <i class="fa-solid fa-code text-accent"></i>
+                            <span>Eksplor Skill</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Contact Badges -->
+                    <div class="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-textSec border-t border-gray-800/80">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-accent"></i>
+                            <span>Samarinda, Kalimantan Timur</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-accent"></i>
+                            <span>fawwaz.hm09@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Profile Frame Right -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group">
+                        <!-- Background Frame Decoration -->
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-accent to-blue-400 opacity-40 group-hover:opacity-80 blur transition duration-500"></div>
+                        
+                        <!-- Image Container Card -->
+                        <div class="relative w-64 sm:w-72 md:w-80 h-80 sm:h-96 rounded-3xl bg-bgSec border border-gray-700/60 overflow-hidden flex items-center justify-center shadow-2xl">
+                            <!-- User's photo specified as foto.PNG -->
+                            <img src="foto.PNG" 
+                                 alt="Foto Profile M. Dafa Fawwaz Arkan" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/400x500/12161C/3B82F6?text=M.+Dafa+Fawwaz';"
+                                 class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                            
+                            <!-- Overlay Gradient at Bottom -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-bgMain via-transparent to-transparent opacity-80"></div>
+                            
+                            <!-- Floating Tag Badge -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-bgSec/90 backdrop-blur-md p-3 rounded-2xl border border-gray-700/80 flex items-center justify-between shadow-lg">
+                                <div>
+                                    <p class="text-xs text-textSec">Status Saat Ini</p>
+                                    <p class="text-xs font-bold text-textMain flex items-center gap-1.5 mt-0.5">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Pelajar SMA
+                                    </p>
+                                </div>
+                                <span class="text-xl text-accent"><i class="fa-solid fa-graduation-cap"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-bgSec relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-accent mb-2">Tentang Saya</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-textMain">Perjalanan & Semangat Belajar</h3>
+                <div class="w-16 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Text Detail Card -->
+                <div class="lg:col-span-8 bg-bgMain border border-gray-800/80 rounded-2xl p-6 sm:p-8 space-y-5 flex flex-col justify-between shadow-xl">
+                    <div class="space-y-4 text-textSec leading-relaxed text-sm sm:text-base">
+                        <p class="first-letter:text-3xl first-letter:font-bold first-letter:text-accent first-letter:mr-1">
+                            Saya adalah pelajar yang memiliki ketertarikan besar pada dunia teknologi, pemrograman, dan pengembangan aplikasi. Saya senang mempelajari hal-hal baru, mencoba berbagai teknologi, serta mengubah ide menjadi sebuah karya yang dapat digunakan dan bermanfaat.
+                        </p>
+                        <p>
+                            Saat ini saya terus mengembangkan kemampuan di bidang pemrograman dan pengembangan web, mulai dari HTML, CSS, hingga Python. Bagi saya, proses belajar bukan hanya tentang memahami teori, tetapi juga tentang berani mencoba, menemukan kesalahan, dan terus memperbaikinya.
+                        </p>
+                        <p>
+                            Saya memiliki semangat untuk terus berkembang dan berharap dapat menggunakan kemampuan di bidang teknologi untuk menciptakan solusi yang kreatif, inovatif, dan bermanfaat bagi banyak orang.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-800 grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                        <div class="p-3 bg-bgSec rounded-xl border border-gray-800">
+                            <p class="text-xs text-textSec">Fokus</p>
+                            <p class="text-sm font-semibold text-textMain mt-1">Web & AI Tech</p>
+                        </div>
+                        <div class="p-3 bg-bgSec rounded-xl border border-gray-800">
+                            <p class="text-xs text-textSec">Prinsip</p>
+                            <p class="text-sm font-semibold text-textMain mt-1">Continuous Learning</p>
+                        </div>
+                        <div class="p-3 bg-bgSec rounded-xl border border-gray-800 col-span-2 sm:col-span-1">
+                            <p class="text-xs text-textSec">Pendekatan</p>
+                            <p class="text-sm font-semibold text-textMain mt-1">Problem Solving</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Info Quick Card -->
+                <div class="lg:col-span-4 bg-bgMain border border-gray-800/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-xl">
+                    <div>
+                        <h4 class="text-lg font-bold text-textMain mb-6 pb-2 border-b border-gray-800 flex items-center gap-2">
+                            <i class="fa-solid fa-id-card text-accent"></i> Informasi Ringkas
+                        </h4>
+                        
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex flex-col">
+                                <span class="text-xs text-textSec">Nama Lengkap</span>
+                                <span class="font-semibold text-textMain mt-0.5">M. Dafa Fawwaz Arkan</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="text-xs text-textSec">Status</span>
+                                <span class="font-semibold text-textMain mt-0.5">Pelajar Sekolah Menengah Atas</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="text-xs text-textSec">Minat Utama</span>
+                                <span class="font-semibold text-textMain mt-0.5">Frontend Dev, Python, AI Tools</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="text-xs text-textSec">Domisili</span>
+                                <span class="font-semibold text-textMain mt-0.5">Samarinda, Indonesia</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-8 p-4 rounded-xl bg-accent/10 border border-accent/20">
+                        <p class="text-xs text-accent italic">
+                            "Proses belajar bukan hanya memahami teori, tapi berani mencoba & terus memperbaiki."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Section -->
+    <section id="skills" class="py-20 bg-bgMain relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-accent mb-2">Kemampuan</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-textMain">Skill & Tingkat Keahlian</h3>
+                <p class="text-sm text-textSec mt-3">Ringkasan tingkat pemahaman dan teknologi yang sedang saya pelajari secara aktif.</p>
+                <div class="w-16 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="skillsContainer">
+                
+                <!-- Skill 1 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-brands fa-html5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">HTML & CSS</h4>
+                                <span class="text-xs text-textSec">Beginner–Intermediate</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">70%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-brands fa-bootstrap"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">Bootstrap</h4>
+                                <span class="text-xs text-textSec">Beginner–Intermediate</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">65%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 65%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-brands fa-js"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">JavaScript</h4>
+                                <span class="text-xs text-textSec">Beginner</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">45%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 45%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-brands fa-php"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">PHP</h4>
+                                <span class="text-xs text-textSec">Beginner</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">40%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 40%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-database"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">MySQL</h4>
+                                <span class="text-xs text-textSec">Beginner</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">40%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 40%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-brands fa-python"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">Python</h4>
+                                <span class="text-xs text-textSec">Beginner</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">50%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 50%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 7 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-pen-nib"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">UI/UX Design</h4>
+                                <span class="text-xs text-textSec">Beginner–Intermediate</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">70%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 8 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">Responsive Web Design</h4>
+                                <span class="text-xs text-textSec">Beginner–Intermediate</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">70%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 9 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover border-accent/40 bg-accent/5">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent text-white flex items-center justify-center text-lg shadow-md shadow-accent/30">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">AI-Assisted Development</h4>
+                                <span class="text-xs text-accent font-medium">Intermediate</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-white bg-accent px-2.5 py-1 rounded-md">80%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 10 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">Problem Solving</h4>
+                                <span class="text-xs text-textSec">Developing</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">60%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 60%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 11 -->
+                <div class="bg-bgSec border border-gray-800 rounded-2xl p-5 card-hover">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-textMain text-sm">Project Development</h4>
+                                <span class="text-xs text-textSec">Developing</span>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-md">60%</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="progress-line h-full bg-accent rounded-full" style="width: 60%;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-bgSec relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-accent mb-2">Riwayat</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-textMain">Jejak Pendidikan</h3>
+                <div class="w-16 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="max-w-3xl mx-auto relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-blue-500/40 to-transparent -translate-x-1/2"></div>
+
+                <!-- Education Item 1: SMA -->
+                <div class="relative mb-12 flex flex-col sm:flex-row items-start group">
+                    <div class="sm:w-1/2 sm:pr-8 text-left sm:text-right pl-10 sm:pl-0">
+                        <div class="bg-bgMain p-6 rounded-2xl border border-gray-800 card-hover">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent mb-2">Pendidikan Saat Ini</span>
+                            <h4 class="text-lg font-bold text-textMain">SMA BUDI LUHUR SAMARINDA</h4>
+                            <p class="text-xs text-textSec mt-1">Sekolah Menengah Atas</p>
+                        </div>
+                    </div>
+                    <!-- Node Point -->
+                    <div class="absolute left-4 sm:left-1/2 top-6 -translate-x-1/2 w-8 h-8 rounded-full bg-bgMain border-2 border-accent flex items-center justify-center text-accent text-xs z-10 shadow-lg shadow-accent/50 group-hover:scale-125 transition-transform">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="sm:w-1/2 sm:pl-8 hidden sm:block"></div>
+                </div>
+
+                <!-- Education Item 2: SMP -->
+                <div class="relative mb-12 flex flex-col sm:flex-row items-start group">
+                    <div class="sm:w-1/2 sm:pr-8 hidden sm:block"></div>
+                    <!-- Node Point -->
+                    <div class="absolute left-4 sm:left-1/2 top-6 -translate-x-1/2 w-8 h-8 rounded-full bg-bgMain border-2 border-accent/60 flex items-center justify-center text-accent/80 text-xs z-10 group-hover:scale-125 transition-transform">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+                    <div class="sm:w-1/2 sm:pl-8 pl-10">
+                        <div class="bg-bgMain p-6 rounded-2xl border border-gray-800 card-hover">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gray-800 text-textSec mb-2">Tingkat Menengah Pertama</span>
+                            <h4 class="text-lg font-bold text-textMain">SMP BUDI LUHUR SAMARINDA</h4>
+                            <p class="text-xs text-textSec mt-1">Sekolah Menengah Pertama</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Item 3: SD -->
+                <div class="relative flex flex-col sm:flex-row items-start group">
+                    <div class="sm:w-1/2 sm:pr-8 text-left sm:text-right pl-10 sm:pl-0">
+                        <div class="bg-bgMain p-6 rounded-2xl border border-gray-800 card-hover">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gray-800 text-textSec mb-2">Tingkat Dasar</span>
+                            <h4 class="text-lg font-bold text-textMain">SDN 01 Kotabaru Hulu</h4>
+                            <p class="text-xs text-textSec mt-1">Sekolah Dasar</p>
+                        </div>
+                    </div>
+                    <!-- Node Point -->
+                    <div class="absolute left-4 sm:left-1/2 top-6 -translate-x-1/2 w-8 h-8 rounded-full bg-bgMain border-2 border-accent/40 flex items-center justify-center text-accent/60 text-xs z-10 group-hover:scale-125 transition-transform">
+                        <i class="fa-solid fa-child"></i>
+                    </div>
+                    <div class="sm:w-1/2 sm:pl-8 hidden sm:block"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-bgMain relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-accent mb-2">Kontak</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-textMain">Mari Terhubung</h3>
+                <p class="text-sm text-textSec mt-3">Jangan ragu untuk menyapa atau berdiskusi mengenai teknologi & kolaborasi project!</p>
+                <div class="w-16 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Instagram Card -->
+                <a href="https://instagram.com/dfwza_" target="_blank" rel="noopener noreferrer" 
+                   class="bg-bgSec border border-gray-800 hover:border-pink-500/50 rounded-2xl p-6 text-center card-hover group flex flex-col items-center justify-center">
+                    <div class="w-14 h-14 rounded-2xl bg-pink-500/10 text-pink-500 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <h4 class="text-textSec text-xs font-medium uppercase tracking-wider">Instagram</h4>
+                    <p class="text-textMain font-bold text-lg mt-1 group-hover:text-pink-400 transition-colors">@dfwza_</p>
+                    <span class="mt-4 text-xs font-semibold text-pink-500 flex items-center gap-1">
+                        Kunjungi Profil <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </span>
+                </a>
+
+                <!-- WhatsApp Card -->
+                <a href="https://wa.me/628125982941" target="_blank" rel="noopener noreferrer" 
+                   class="bg-bgSec border border-gray-800 hover:border-emerald-500/50 rounded-2xl p-6 text-center card-hover group flex flex-col items-center justify-center">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h4 class="text-textSec text-xs font-medium uppercase tracking-wider">WhatsApp</h4>
+                    <p class="text-textMain font-bold text-lg mt-1 group-hover:text-emerald-400 transition-colors">08125982941</p>
+                    <span class="mt-4 text-xs font-semibold text-emerald-500 flex items-center gap-1">
+                        Kirim Pesan <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                    </span>
+                </a>
+
+                <!-- Email Card -->
+                <a href="mailto:fawwaz.hm09@gmail.com" 
+                   class="bg-bgSec border border-gray-800 hover:border-accent/50 rounded-2xl p-6 text-center card-hover group flex flex-col items-center justify-center">
+                    <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <h4 class="text-textSec text-xs font-medium uppercase tracking-wider">Email Direct</h4>
+                    <p class="text-textMain font-bold text-base mt-1 group-hover:text-accent transition-colors break-all">fawwaz.hm09@gmail.com</p>
+                    <span class="mt-4 text-xs font-semibold text-accent flex items-center gap-1">
+                        Kirim Email <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </span>
+                </a>
+
+            </div>
+
+            <!-- Quick Copy Info Box -->
+            <div class="mt-12 bg-bgSec/60 border border-gray-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
+                        <i class="fa-solid fa-copy"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-textMain">Salin Alamat Email</p>
+                        <p class="text-xs text-textSec">fawwaz.hm09@gmail.com</p>
+                    </div>
+                </div>
+                <button id="copyEmailBtn" class="px-4 py-2 rounded-xl bg-bgMain border border-gray-700 hover:border-accent text-xs font-semibold text-textMain hover:text-accent transition-all">
+                    Copy Email
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-bgSec border-t border-gray-800 py-8 text-center text-xs text-textSec">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 M. Dafa Fawwaz Arkan. All rights reserved.</p>
+            <div class="flex items-center space-x-4 text-sm">
+                <a href="https://instagram.com/dfwza_" target="_blank" class="hover:text-accent transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/628125982941" target="_blank" class="hover:text-accent transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:fawwaz.hm09@gmail.com" class="hover:text-accent transition-colors"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-bgSec border border-accent text-textMain px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-accent text-lg"></i>
+        <span id="toastMsg" class="text-xs font-semibold">Teks berhasil disalin!</span>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                menuIcon.classList.replace('fa-bars', 'fa-xmark');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            });
+        });
+
+        // Copy Email Toast Functionality
+        const copyEmailBtn = document.getElementById('copyEmailBtn');
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMsg');
+
+        function showToast(message) {
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        copyEmailBtn.addEventListener('click', () => {
+            const emailText = "fawwaz.hm09@gmail.com";
+            
+            // Clipboard copy implementation compatible with standard browsers
+            const tempInput = document.createElement('input');
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('Email "fawwaz.hm09@gmail.com" telah disalin!');
+        });
+    </script>
+</body>
+</html>
